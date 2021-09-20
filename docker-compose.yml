@@ -6,7 +6,7 @@ services:
     container_name: frontend
     stdin_open: true
     environment:
-           PROXY: http://backend:8080,
+           PROXY: BACKEND
     ports:
       - "3000:3000"
 
