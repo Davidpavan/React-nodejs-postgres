@@ -15,7 +15,6 @@ services:
   backend:
     build: ./backend
     container_name: backend
-    stdin_open: true
     ports:
       - "8080:8080"
 
