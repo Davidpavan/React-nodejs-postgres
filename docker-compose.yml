@@ -3,17 +3,17 @@ services:
 
 
   frontend:
-    image: srikavyapendiala/frontend
+    build: ./frontend
     container_name: frontend
     stdin_open: true
     ports:
       - "3000:3000"
 
     depends_on:
-      PROXY: BACKEND
+      - backend
 
   backend:
-    image: srikavyapendiala/backend
+    build: ./backend
     container_name: backend
     ports:
       - "8080:8080"
@@ -26,8 +26,6 @@ services:
       - PGPASS=123
       - PGHOST=postgres
       - PGDIALECT=postgres
-
-
 
   postgres:
     image: postgres:latest
