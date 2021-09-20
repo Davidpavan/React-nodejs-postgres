@@ -1,6 +1,32 @@
 version: "3.3"
 services:
   
+  postgres:
+    build: ./
+    image: postgres:latest
+    container_name: postgres
+    ports:
+      - "5432:5432"
+
+    environment:
+      POSTGRES_PASSWORD: 123
+      POSTGRES_USER: postgres
+      POSTGRES_DB: loizenaidb
+      
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "8080:8080"
+
+    depends_on:
+      - postgres
+    environment:
+      BACKEND_DATA: loizenaidb
+      BACKEND_USER: postgres
+      BACKEND_PASS: 123
+      BACKEND_HOST: postgres
+        
   frontend:
     build: ./frontend
     container_name: frontend
@@ -28,14 +54,5 @@ services:
       BACKEND_HOST: postgres
     
     
-  postgres:
-    image: postgres:latest
-    container_name: postgres
-    ports:
-      - "5432:5432"
-
-    environment:
-      POSTGRES_PASSWORD: 123
-      POSTGRES_USER: postgres
-      POSTGRES_DB: loizenaidb
+ 
  
