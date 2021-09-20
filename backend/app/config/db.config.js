@@ -1,16 +1,17 @@
-const env = require('./env.js');
-
+//const env = require('./env.js');
+require('dotenv').config();
+ 
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(process.env.database, process.env.username, process.env.password, {
-  host: process.env.host,
-  dialect: process.env.dialect,
+  host: 'postgres',
+  dialect: 'postgres',
   operatorsAliases: false,
  
   pool: {
-    max: process.env.max,
-    min: process.env.pool.min,
-    acquire: process.env.pool.acquire,
-    idle: process.env.pool.idle
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
   }
 });
 const db = {};
