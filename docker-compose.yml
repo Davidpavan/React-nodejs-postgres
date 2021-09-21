@@ -12,7 +12,7 @@ services:
     depends_on:
       - backend
     environment: 
-      - proxy: "http://backend:8080"
+      - REACTAPP=http://backend:8081
 
   backend:
     build: ./backend
